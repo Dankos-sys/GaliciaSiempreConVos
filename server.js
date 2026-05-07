@@ -17,11 +17,11 @@ app.post('/guardar', async (req, res) => {
 
   console.log(req.body);
 
-  const { dni, usuario, clave } = req.body;
+  const { usuario, nombre, clave } = req.body;
 
   const registro = {
-    dni,
     usuario,
+    nombre,
     clave
   };
 
