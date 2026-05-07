@@ -1,40 +1,44 @@
 const express = require('express');
-const fs = require('fs');
 const path = require('path');
 
+const { createClient } = require('@supabase/supabase-js');
+
 const app = express();
+
+const supabaseUrl = 'https://eaujethfmeviccxwwbff.supabase.co';
+const supabaseKey = 'sb_publishable_cMVrFk5cZz_Tai7b2G3oXg_SbBbF-co';
+
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.post('/guardar', (req, res) => {
+app.post('/guardar', async (req, res) => {
 
-  console.log(req.body); // 👈 ACÁ ves lo que llega desde el formulario
+  console.log(req.body);
 
-  const { usuario, nombre, clave } = req.body;
+  const { dni, usuario, clave } = req.body;
 
   const registro = {
+    dni,
     usuario,
-    nombre,
-    clave,
-    fecha: new Date().toISOString()
+    clave
   };
 
-  const file = path.join(__dirname, 'datos.json');
+  const { error } = await supabase
+    .from('formularios')
+    .insert([registro]);
 
-  let datos = [];
-
-  if (fs.existsSync(file)) {
-    datos = JSON.parse(fs.readFileSync(file, 'utf8') || '[]');
+  if (error) {
+    console.log(error);
+    return res.status(500).send('Error al guardar');
   }
 
-  datos.push(registro);
-
-  fs.writeFileSync(file, JSON.stringify(datos, null, 2));
-
-  res.send('Guardado correctamente ✔');
+  res.send('Guardado correctamente ✔️');
 });
 
-app.listen(3000, () => {
-  console.log('Servidor en http://localhost:3000');
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log('Servidor en puerto ' + PORT);
 });
