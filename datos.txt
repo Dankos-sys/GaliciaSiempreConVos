@@ -1,0 +1,4 @@
+{"usuario":"Mariano"}
+{"usuario":"40297296"}
+{"usuario":"DNI"}
+{"usuario":"documento","nombre":"usuario","clave":"contraseña1"}
