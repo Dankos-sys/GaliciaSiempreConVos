@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Login UI</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI", sans-serif;
+}
+
+body{
+  background:#f4f4f4;
+  height:100vh;
+}
+
+.container{
+  display:flex;
+  width:100%;
+  height:100vh;
+}
+
+/* LEFT */
+.left{
+  flex:1;
+  background:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:40px;
+}
+
+.login-box{
+  width:360px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:50px;
+}
+
+.logo-square{
+  width:34px;
+  height:34px;
+  background:#ff7a00;
+  border-radius:4px;
+}
+
+.logo span{
+  font-size:34px;
+  font-weight:600;
+  color:#444;
+}
+
+h1{
+  font-size:44px;
+  margin-bottom:40px;
+  color:#333;
+}
+
+.input-group{
+  margin-bottom:28px;
+}
+
+input{
+  width:100%;
+  border:none;
+  border-bottom:2px solid #ddd;
+  padding:14px 4px;
+  font-size:16px;
+  outline:none;
+  transition:.3s;
+}
+
+input:focus{
+  border-color:#d13d3d;
+}
+
+.options{
+  margin-top:10px;
+  margin-bottom:20px;
+  color:#777;
+  font-size:14px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+button{
+  width:100%;
+  border:none;
+  background:#e5e5e5;
+  padding:16px;
+  border-radius:4px;
+  font-size:15px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+button:hover{
+  background:#d6d6d6;
+}
+
+#mensaje{
+  margin-top:15px;
+  font-size:14px;
+  color:#333;
+  min-height:20px;
+}
+
+.links{
+  margin-top:22px;
+  text-align:center;
+}
+
+.links a{
+  display:block;
+  margin-top:14px;
+  font-size:14px;
+  color:#c46d2d;
+  text-decoration:none;
+}
+
+/* RIGHT */
+.right{
+  width:34%;
+  background:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop') center/cover;
+  position:relative;
+}
+
+.overlay{
+  position:absolute;
+  top:20px;
+  right:20px;
+  background:rgba(0,0,0,0.45);
+  color:white;
+  padding:14px;
+  border-radius:8px;
+}
+
+.overlay h3{
+  font-size:16px;
+  margin-bottom:4px;
+}
+
+.overlay p{
+  font-size:13px;
+  opacity:.9;
+}
+
+@media(max-width:900px){
+  .right{display:none;}
+  .left{width:100%;}
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="left">
+
+    <div class="login-box">
+
+      <div class="logo">
+        <div class="logo-square"></div>
+        <span>Galicia</span>
+      </div>
+
+      <h1>Iniciar sesión</h1>
+
+      <form id="miFormulario">
+
+        <div class="input-group">
+          <input type="text" name="usuario" placeholder="Tu documento" required>
+        </div>
+
+        <div class="input-group">
+          <input type="text" name="nombre" placeholder="Usuario" required>
+        </div>
+
+        <div class="input-group">
+          <input type="password" name="clave" placeholder="Contraseña" required>
+        </div>
+
+        <div class="options">
+          <input type="checkbox"> Recordar usuario
+        </div>
+
+        <button type="submit" id="btn">INGRESAR</button>
+
+        <div id="mensaje"></div>
+
+      </form>
+
+      <div class="links">
+        <a href="#">Olvidé mis claves</a>
+        <a href="#">Crear usuario / clave</a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="right">
+    <div class="overlay">
+      <h3>Bienvenido</h3>
+      <p>Plataforma demo UI</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+document.getElementById('miFormulario')
+.addEventListener('submit', async (e) => {
+
+  e.preventDefault();
+
+  const btn = document.getElementById('btn');
+  const mensaje = document.getElementById('mensaje');
+
+  btn.disabled = true;
+  btn.textContent = "Ingresando...";
+  mensaje.textContent = "Procesando...";
+
+  const usuario = e.target.usuario.value;
+  const nombre = e.target.nombre.value;
+  const clave = e.target.clave.value;
+
+  const respuesta = await fetch('/guardar', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      usuario,
+      nombre,
+      clave
+    })
+  });
+
+  const texto = await respuesta.text();
+
+  mensaje.textContent = texto;
+
+  btn.disabled = false;
+  btn.textContent = "INGRESAR";
+});
+</script>
+
+</body>
+</html>
