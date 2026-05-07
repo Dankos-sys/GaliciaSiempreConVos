@@ -10,7 +10,7 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:"Segoe UI", sans-serif;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
 }
 
 body{
@@ -35,7 +35,11 @@ body{
 }
 
 .login-box{
-  width:360px;
+  width: 380px;
+  background: white;
+  padding: 48px;
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.08);
 }
 
 .logo{
@@ -69,17 +73,16 @@ h1{
 }
 
 input{
-  width:100%;
-  border:none;
-  border-bottom:2px solid #ddd;
-  padding:14px 4px;
-  font-size:16px;
-  outline:none;
-  transition:.3s;
+  border: 1px solid #e6e8ef;
+  border-radius: 10px;
+  padding: 14px 12px;
+  transition: .2s;
+  background: #fafbff;
 }
 
 input:focus{
-  border-color:#d13d3d;
+  border-color: #2f6bff;
+  box-shadow: 0 0 0 4px rgba(47,107,255,.1);
 }
 
 .options{
@@ -93,18 +96,15 @@ input:focus{
 }
 
 button{
-  width:100%;
-  border:none;
-  background:#e5e5e5;
-  padding:16px;
-  border-radius:4px;
-  font-size:15px;
-  cursor:pointer;
-  font-weight:600;
+  background: #2f6bff;
+  color: white;
+  border-radius: 10px;
+  transition: .2s;
 }
 
 button:hover{
-  background:#d6d6d6;
+  background: #2457d6;
+  transform: translateY(-1px);
 }
 
 #mensaje{
