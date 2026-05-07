@@ -34,7 +34,9 @@ app.post('/guardar', async (req, res) => {
     return res.status(500).send('Error al guardar');
   }
 
-  res.send('Guardado correctamente ✔️');
+  res.sendStatus(200
+    
+  );
 });
 
 const PORT = process.env.PORT || 3000;
