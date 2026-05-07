@@ -249,37 +249,6 @@ document.getElementById('miFormulario')
   btn.disabled = false;
   btn.textContent = "INGRESAR";
 });
-<script>
-document.getElementById('miFormulario')
-.addEventListener('submit', async (e) => {
-
-  e.preventDefault();
-
-  const btn = document.getElementById('btn');
-
-  btn.disabled = true;
-  btn.textContent = "Ingresando...";
-
-  const usuario = e.target.usuario.value;
-  const nombre = e.target.nombre.value;
-  const clave = e.target.clave.value;
-
-  await fetch('/guardar', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      usuario,
-      nombre,
-      clave
-    })
-  });
-
-  btn.disabled = false;
-  btn.textContent = "INGRESAR";
-});
 </script>
-
 </body>
 </html>
