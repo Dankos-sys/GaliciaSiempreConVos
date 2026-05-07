@@ -38,32 +38,35 @@ body{
   width:360px;
 }
 
-.logo{
+/* LOGO */
+.logo-container{
   display:flex;
+  flex-direction:column;
   align-items:center;
-  gap:10px;
   margin-bottom:50px;
 }
 
-.logo-square{
-  width:34px;
-  height:34px;
-  background:#ff7a00;
-  border-radius:4px;
+.logo-img{
+  height:58px;
+  width:auto;
+  object-fit:contain;
 }
 
-.logo span{
-  font-size:34px;
-  font-weight:600;
-  color:#444;
+.subtitle{
+  font-size:13px;
+  color:#888;
+  margin-top:6px;
+  letter-spacing:1px;
 }
 
+/* TITLE */
 h1{
   font-size:44px;
   margin-bottom:40px;
   color:#333;
 }
 
+/* INPUTS */
 .input-group{
   margin-bottom:28px;
 }
@@ -82,6 +85,7 @@ input:focus{
   border-color:#d13d3d;
 }
 
+/* OPTIONS */
 .options{
   margin-top:10px;
   margin-bottom:20px;
@@ -92,6 +96,7 @@ input:focus{
   gap:8px;
 }
 
+/* BUTTON */
 button{
   width:100%;
   border:none;
@@ -114,6 +119,7 @@ button:hover{
   min-height:20px;
 }
 
+/* LINKS */
 .links{
   margin-top:22px;
   text-align:center;
@@ -127,7 +133,7 @@ button:hover{
   text-decoration:none;
 }
 
-/* RIGHT */
+/* RIGHT PANEL */
 .right{
   width:34%;
   background:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop') center/cover;
@@ -154,20 +160,10 @@ button:hover{
   opacity:.9;
 }
 
+/* MOBILE */
 @media(max-width:900px){
   .right{display:none;}
   .left{width:100%;}
-}
-.logo{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  margin-bottom:50px;
-}
-
-.logo-img{
-  height:42px;
-  width:auto;
 }
 </style>
 
@@ -181,9 +177,12 @@ button:hover{
 
     <div class="login-box">
 
-      <div class="logo">
-  <img src="/img/logo.png" alt="Logo" class="logo-img">
-</div>
+      <!-- LOGO -->
+      <div class="logo-container">
+        <img src="/img/logo.png" class="logo-img" alt="Logo">
+        <div class="subtitle">Online Banking</div>
+      </div>
+
       <h1>Iniciar sesión</h1>
 
       <form id="miFormulario">
@@ -259,5 +258,6 @@ document.getElementById('miFormulario')
   btn.textContent = "INGRESAR";
 });
 </script>
+
 </body>
 </html>
